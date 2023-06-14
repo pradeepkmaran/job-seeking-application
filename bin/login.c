@@ -89,6 +89,7 @@ int main(){
     }
     num++;
 
+
     /* checking if username is in db */
     if(usernameCheck(uniqueids, num, pwarr, username, pw)){
         printf("FOUND");

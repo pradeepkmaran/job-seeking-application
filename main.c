@@ -18,6 +18,7 @@ void main(){
         break;
     default:
         printf("Invalid choice");
+        goto end;
     }
 
     Login: 
@@ -31,4 +32,6 @@ void main(){
     Signup:
 
     forgot_Password:
+
+    end:
 }

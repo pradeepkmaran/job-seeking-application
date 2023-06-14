@@ -5,6 +5,7 @@
 
 int usernameCheck(char uniqueids[][7], int num, char pwarr[][8], char username[], char pw[])
 {
+    /* Username check */
     int index = -1;
     for(int i=0;i<num;i++)
     {   
@@ -24,6 +25,8 @@ int usernameCheck(char uniqueids[][7], int num, char pwarr[][8], char username[]
         }
         
     }
+
+    /* Password check */
     int count=0;
     for(int j=0;j<8;j++)
     {   
@@ -55,8 +58,8 @@ int login(){
     printf("Enter PW: ");
     scanf("%s", pw);
 
-    /* storing login username in array */
-    uniqueiddb= fopen("uniqueiddb.txt","r");
+    /* storing usernames in 'uniqueids' */
+    uniqueiddb= fopen("db\\uniqueiddb.txt","r");
     int i=0;
     int num = 0;
     while(1){
@@ -71,7 +74,8 @@ int login(){
         }
     }
 
-    pwdb= fopen("pwdb.txt","r");
+    /* Storing passwords in 'pwarr' */
+    pwdb= fopen("db\\pwdb.txt","r");
     i=0;
     num = 0;
     while(1){
@@ -89,7 +93,7 @@ int login(){
     }
     num++;
 
-    /* checking if username is in db */
+    /* checking if username is in db and password matches the username*/
     if(usernameCheck(uniqueids, num, pwarr, username, pw)){
         fclose(uniqueiddb);
         fclose(pwdb);
