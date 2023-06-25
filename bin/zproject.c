@@ -8,10 +8,10 @@
 struct job_seeker {
     char name[50];
     int age;
-    char gender[10];
+    char gender;
     char degree[50];
     char institution[50];
-    float gpa;
+    float cgpa;
     char job_title[50];
     char company[50];
     int experience;

@@ -1,8 +1,10 @@
 #include<stdio.h>
-#include"login.h"
+#include"loginnew.h"
+#include"signup.h"
 
 void main(){
-    printf("1 - Login\n2 - Signup\n3 - Forgot Password\n");
+    choice:
+    printf("\n1 - Login\n2 - Signup\n3 - Forgot Password\n\nEnter your choice: ");
     int choice;
     scanf("%d", &choice);
     switch (choice)
@@ -23,13 +25,29 @@ void main(){
 
     Login: 
     int login_result = login();
-    if(login_result){
-        printf("MAIN LA LOGIN WORK AGUDHU DAA!!!!!");
+    if(login_result == 1){
+        system("cls");
+        printf("========JOBSEEKER LOGIN DONE========\n\n");
+    }
+    else if(login_result == 2){
+        system("cls");
+        printf("========COMPANY LOGIN DONE========\n\n");
+    }
+    else if(login_result == -1){
+        printf("\nUSERNAME NOT FOUND.\nTry again.\n");
+        goto choice;
     }
     else{
-        printf("POCHHHH!!!");
+        printf("WRONG PASSWORD FOR 3 TIMES.\n\n");
+        main();
     }
-    Signup:
+    goto end;
+
+    Signup: 
+    signup();
+    system("cls");
+    printf("========SIGNUP DONE========\n\n");
+    goto end;
 
     forgot_Password:
 
