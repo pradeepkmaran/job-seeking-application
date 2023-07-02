@@ -1,0 +1,4 @@
+Google,25,product,california,2,Network Test Engineer,100000,1,offline,Project Manager,200000,2,offline
+Meta,25,product,india,2,Network Test Engineer,150000,2,offline,Android Developer,230000,3,offline
+Netflix,25,product,china,2,Movie Critisiser,100000,3,offline,Machine Learning Engineer,200000,4,offline
+Apple,30,Product,Chennai,1,Swift Developer,130400,4,offline

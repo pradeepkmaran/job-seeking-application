@@ -3,12 +3,6 @@
 #include<string.h>
 #include<math.h>
 
-/* WORK TO DO */
-/*
-    - print without garbage values
-    - check if skills and certifications are assigned properly
-
-*/
 #define N 100
 #define newline printf("\n");
 #define clearBuffer while(getchar()!='\n');
@@ -34,7 +28,7 @@ struct employer {
     char jobPost[N][N];
     int package[N]; 
     char jobType[N][N];
-    char shiftTime[N][N];
+    int shiftTime[N];
     char location[N];
 };
 
@@ -89,7 +83,7 @@ void employerSignup()
     char companyType[N];
     char jobPost[N][N];
     int package[N]; 
-    char shiftTime[N][N];
+    int shiftTime[N];
     char jobType[N][N];
     char location[N];
     char username[N];
@@ -176,9 +170,9 @@ void employerSignup()
         scanf("%d",&package[i]);
         clearBuffer;
 
-        printf("Enter Shift Mode: ");
-        fgets(shiftTime[i], N, stdin);
-        shiftTime[i][strlen(shiftTime[i])-1]='\0';
+        printf("Enter shift timing \n1: 1st Shift: 6:00am to 4:00pm\n2: 2nd Shift: 2:00pm to 12:00am\n3: 3rd Shift: 10pm to 8:00am\n4: rotating shift\nEnter choice: ");
+        scanf("%d", &shiftTime[i]);
+        clearBuffer;
 
         printf("Enter job type (wfh/offline): ");
         fgets(jobType[i], N, stdin);
@@ -196,7 +190,7 @@ void employerSignup()
         emp.package[i] = package[i];
     }
     for(int i=0;i<jobCount;i++){
-        strcpy(emp.shiftTime[i], shiftTime[i]);
+        emp.shiftTime[i] = shiftTime[i];
     }
     for(int i=0;i<jobCount;i++){
         strcpy(emp.jobType[i], jobType[i]);
@@ -214,14 +208,21 @@ void employerSignup()
     fprintf(pwdb, "%s\n", pw);
     fclose(pwdb);
 
-    /* Writing in csv file */
+    /* Writing in txt file */
     FILE* companyprofile;
-    companyprofile = fopen("db//companyprofile.csv", "a");
-    fprintf(companyprofile,"%s,%d,%s,%d,", emp.companyName, emp.companyAge, emp.companyType, jobCount);
+    companyprofile = fopen("db//companyprofile.txt", "a");
+    fprintf(companyprofile,"%s,%d,%s,", emp.companyName, emp.companyAge, emp.companyType);
+    fprintf(companyprofile, "%s,", emp.location);
+    fprintf(companyprofile, "%d,", jobCount);
     for(int i=0;i<jobCount;i++){
-        fprintf(companyprofile,"%s,%d,%s,%s,", emp.jobPost[i], emp.package[i], emp.shiftTime[i], emp.jobType[i]);
+        if(i == jobCount-1){
+            fprintf(companyprofile,"%s,%d,%d,%s", emp.jobPost[i], emp.package[i], emp.shiftTime[i], emp.jobType[i]);
+            break;
+        }
+        fprintf(companyprofile,"%s,%d,%d,%s,", emp.jobPost[i], emp.package[i], emp.shiftTime[i], emp.jobType[i]);
     }
-    fprintf(companyprofile, "%s\n", emp.location);
+    fprintf(companyprofile, "\n");
+    fclose(companyprofile);
 }
 
 void jobseekerSignup()
@@ -467,9 +468,9 @@ void jobseekerSignup()
     fprintf(pwdb, "%s\n", pw);
     fclose(pwdb);
 
-    /* Writing in csv file */
+    /* Writing in txt file */
     FILE* seekerprofile;
-    seekerprofile = fopen("db//seekerprofile.csv", "a");
+    seekerprofile = fopen("db//seekerprofile.txt", "a");
     fprintf(seekerprofile,"%s,%d,%c,%d,%d,", seeker.name, seeker.age, seeker.gender, seeker.marital_status, degreeCount);
     for(int i=0;i<degreeCount;i++){
         fprintf(seekerprofile,"%s,%s,%.2f,", seeker.degree[i], seeker.institution[i], seeker.cgpa[i]);
@@ -490,6 +491,7 @@ void jobseekerSignup()
         }
     }
     fprintf(seekerprofile, "\n");
+    fclose(seekerprofile);
 }
 
 void signup()
