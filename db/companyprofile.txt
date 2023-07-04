@@ -1,4 +1,17 @@
 Google,25,product,california,2,Network Test Engineer,100000,1,offline,Project Manager,200000,2,offline
+Apple,30,Product,Chennai,1,Swift Developer,130400,4,offline
 Meta,25,product,india,2,Network Test Engineer,150000,2,offline,Android Developer,230000,3,offline
 Netflix,25,product,china,2,Movie Critisiser,100000,3,offline,Machine Learning Engineer,200000,4,offline
-Apple,30,Product,Chennai,1,Swift Developer,130400,4,offline
+Zoho,25,product,california,2,Swift Developer,35000,1,offline,Project Manager,200000,2,offline
+HCL,25,product,china,2,Movie Critisiser,12000,3,wfh,Project Manager,200000,4,offline
+Disney,25,product,china,2,Movie Critisiser,20000,3,offline,Animator,200000,4,offline
+Samsung,25,product,california,2,Movie Critisiser,999000,1,offline,Project Manager,200000,2,wfh
+Twitter,25,product,china,2,Movie Reviewer,450000,3,offline,Machine Learning Engineer,200000,4,offline
+Prime,25,product,china,2,Swift Developer,30000,3,wfh,Machine Learning Engineer,200000,4,offline
+Tesla,25,product,USA,2,Swift Developer,30000,3,offline,Machine Learning Engineer,200000,4,wfh
+SpaceX,30,Service,Russia,1,Astronaut,130400,4,offline
+Blue Origin,30,Service,USA,1,Astronaut,130400,4,offline
+ISRO,30,Service,India,1,Rocket Engineer,130400,4,offline
+Mahindra,30,Service,India,1,Rocket Engineer,130400,4,offline
+TATA,30,Service,India,1,Rocket Engineer,130400,4,offline
+Hyundai,30,Service,India,1,Rocket Engineer,130400,4,offline

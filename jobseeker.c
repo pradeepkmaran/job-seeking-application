@@ -145,6 +145,10 @@ void get_seeker_requirements(struct seeker_requirements_struct seeker_req[], int
         scanf("%d", &importance[importance_index++]);
         while(getchar()!='\n');
     }
+    else{
+        while(getchar()!='\n');
+        importance_index++;
+    }
     printf("\nEnter job position: ");
     fgets(seeker_req[0].job_position, N, stdin);
     seeker_req[0].job_position[strlen(seeker_req[0].job_position)-1]='\0';
@@ -203,7 +207,7 @@ void check_compulsory(struct seeker_requirements_struct seeker_req[], struct job
             whilej:
             int j=0;
             while(j<*job_offers_count){
-                if(i==0){ //checking if companies satisfy by its name
+                if(i==0 && seeker_req[0].company_count!=0){ //checking if companies satisfy by its name
                     int company_match_count=0;
                     for(int company=0;company<seeker_req[0].company_count;company++){
                         if(strcmp(seeker_req[0].company_name[company], job_offers[j].companyName) == 0){
@@ -259,25 +263,24 @@ void check_compulsory(struct seeker_requirements_struct seeker_req[], struct job
 
 float calculate_company_score(struct seeker_requirements_struct seeker_req, struct job_offers job_offer, int importance[]){
     float score=0;
+
     if(stricmp(seeker_req.job_position, job_offer.jobPost) == 0){
         if(importance[1]>0){ 
             score += importance[1];
         }
         else if(importance[1]==0){ 
-            score += 0.7;
+            score += 0.5;
         }
     }
     if(seeker_req.salary_expected <= job_offer.package){
-        score += importance[2];
         if(importance[2]>0){ 
             score += importance[2];
         }
         else if(importance[2]==0){ 
-            score += 0.6;
+            score += 0.5;
         }
     }
     if(seeker_req.shift_time == job_offer.shiftTime){
-        score += importance[3];
         if(importance[3]>0){ 
             score += importance[3];
         }
@@ -286,47 +289,61 @@ float calculate_company_score(struct seeker_requirements_struct seeker_req, stru
         }
     }
     if(stricmp(seeker_req.job_location, job_offer.location) == 0){
-        score += importance[4];
         if(importance[4]>0){ 
             score += importance[4];
         }
         else if(importance[4]==0){ 
-            score += 0.4;
+            score += 0.3;
         }
     }
     if(stricmp(seeker_req.company_type, job_offer.companyType) == 0){
-        score += importance[5];
         if(importance[5]>0){ 
             score += importance[5];
         }
         else if(importance[5]==0){ 
-            score += 0.3;
+            score += 0.1;
         }
     }
     if(stricmp(seeker_req.job_type, job_offer.jobType) == 0){
-        score += importance[6];
         if(importance[6]>0){ 
             score += importance[6];
         }
         else if(importance[6]==0){ 
-            score += 0.3;
+            score += 0.1;
         }
     }
 
     return score;
 }
-
+void sort_company_score(struct job_offers job_offers[], float company_scores[], int job_offers_count)
+{
+    float temp;
+    struct job_offers temp1;
+    for(int i=0;i<job_offers_count;i++){
+        for(int j=0;j<job_offers_count-1;j++)
+        {
+            if(company_scores[j+1]>company_scores[j])
+            {
+                temp=company_scores[j+1];
+                company_scores[j+1]=company_scores[j];
+                company_scores[j]=temp;
+                temp1=job_offers[j+1];
+                job_offers[j+1]=job_offers[j];
+                job_offers[j]=temp1;
+            }
+        }
+    }
+}
 /* void job_seeker_menu(){ */
 int main(){
     int job_offers_count = count_job_offers();
-    int importance[7];
+    int importance[7]={0,0,0,0,0,0,0};
 
     struct job_offers job_offers[job_offers_count];
     struct seeker_requirements_struct seeker_req[1];
 
     get_seeker_requirements(seeker_req, importance);
     read_company_data(job_offers, job_offers_count);
-
     check_compulsory(seeker_req, job_offers, &job_offers_count, importance);
     
     float company_scores[job_offers_count];
@@ -334,8 +351,11 @@ int main(){
         company_scores[i] = calculate_company_score(seeker_req[0], job_offers[i], importance);
     }
 
-    for(int i=0;i<job_offers_count;i++){
+    sort_company_score(job_offers,company_scores,job_offers_count);
+
+    for(int i=0;i<7;i++){
         printf("%.2f %s %s %s %s %d %d %s\n",company_scores[i], job_offers[i].companyName,job_offers[i].companyType,job_offers[i].location,job_offers[i].jobPost,job_offers[i].package,job_offers[i].shiftTime,job_offers[i].jobType);
     }
+
     
 }
