@@ -432,6 +432,7 @@ void jobseekerSignup()
     }  
         /* Assigning skills */
     int indi = 0, indj = 0;
+    int skillsCount=0;
     for(int i=0;i<strlen(skills);i++){
         if(skills[i] == ','){
             seeker.skills[indi][indj++] = '\0';
@@ -443,8 +444,10 @@ void jobseekerSignup()
         }
     }
     seeker.skills[indi][indj] = '\0';
+    skillsCount = indi+1;
         /* Assigning certifications */
     indi = 0, indj = 0;
+    int certCount=0;
     for(int i=0;i<strlen(certifications);i++){
         if(certifications[i] == ','){
             seeker.certifications[indi][indj++] = '\0';
@@ -456,6 +459,7 @@ void jobseekerSignup()
         }
     }
     seeker.certifications[indi][indj] = '\0';
+    certCount=indi+1;
 
     /* Storing username and pw  */
     FILE* usernamedb;
@@ -479,12 +483,13 @@ void jobseekerSignup()
     for(int i=0;i<companyCount;i++){
         fprintf(seekerprofile,"%s,%d,%s,", seeker.company[i], seeker.experience[i], seeker.job_title[i]);
     }
+    fprintf(seekerprofile, "%d,",skillsCount);
     for(int i=0;i<N;i++){
         if(seeker.skills[i][0]!='\0'){
             fprintf(seekerprofile, "%s|", seeker.skills[i]);
         }
     }
-    fprintf(seekerprofile, ",");
+    fprintf(seekerprofile, ",%d,", certCount);
     for(int i=0;i<N;i++){
         if(seeker.certifications[i][0]!='\0'){
             fprintf(seekerprofile, "%s|", seeker.certifications[i]);

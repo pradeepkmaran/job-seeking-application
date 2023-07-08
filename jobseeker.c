@@ -210,7 +210,7 @@ void check_compulsory(struct seeker_requirements_struct seeker_req[], struct job
                 if(i==0 && seeker_req[0].company_count!=0){ //checking if companies satisfy by its name
                     int company_match_count=0;
                     for(int company=0;company<seeker_req[0].company_count;company++){
-                        if(strcmp(seeker_req[0].company_name[company], job_offers[j].companyName) == 0){
+                        if(stricmp(seeker_req[0].company_name[company], job_offers[j].companyName) == 0){
                             company_match_count++;
                         }
                     }
@@ -220,7 +220,7 @@ void check_compulsory(struct seeker_requirements_struct seeker_req[], struct job
                     }
                 }
                 else if(i==1){ //checking if companies satisfy by job_position
-                    if(strcmp(seeker_req[0].job_position, job_offers[j].jobPost) != 0){
+                    if(stricmp(seeker_req[0].job_position, job_offers[j].jobPost) != 0){
                         remove_offers(job_offers, (*job_offers_count)--, j);
                         goto whilej;
                     }
@@ -238,19 +238,19 @@ void check_compulsory(struct seeker_requirements_struct seeker_req[], struct job
                     }
                 }
                 else if(i==4){ //checking if companies satisfy by job location
-                    if(strcmp(seeker_req[0].job_location, job_offers[j].location) != 0){
+                    if(stricmp(seeker_req[0].job_location, job_offers[j].location) != 0){
                         remove_offers(job_offers, (*job_offers_count)--, j);
                         goto whilej;
                     }
                 }
                 else if(i==5){ //checking if companies satisfy by type of company
-                    if(strcmp(seeker_req[0].company_type, job_offers[j].companyType) != 0){
+                    if(stricmp(seeker_req[0].company_type, job_offers[j].companyType) != 0){
                         remove_offers(job_offers, (*job_offers_count)--, j);
                         goto whilej;
                     }
                 }
                 else if(i==6){ //checking if companies satisfy by type of job
-                    if(strcmp(seeker_req[0].job_type, job_offers[j].jobType) != 0){
+                    if(stricmp(seeker_req[0].job_type, job_offers[j].jobType) != 0){
                         remove_offers(job_offers, (*job_offers_count)--, j);
                         goto whilej;
                     }
@@ -353,8 +353,15 @@ int main(){
 
     sort_company_score(job_offers,company_scores,job_offers_count);
 
-    for(int i=0;i<7;i++){
-        printf("%.2f %s %s %s %s %d %d %s\n",company_scores[i], job_offers[i].companyName,job_offers[i].companyType,job_offers[i].location,job_offers[i].jobPost,job_offers[i].package,job_offers[i].shiftTime,job_offers[i].jobType);
+    if(job_offers_count>7){
+        for(int i=0;i<7;i++){
+            printf("%.2f %s %s %s %s %d %d %s\n",company_scores[i], job_offers[i].companyName,job_offers[i].companyType,job_offers[i].location,job_offers[i].jobPost,job_offers[i].package,job_offers[i].shiftTime,job_offers[i].jobType);
+        }
+    }
+    else{
+        for(int i=0;i<job_offers_count;i++){
+            printf("%.2f %s %s %s %s %d %d %s\n",company_scores[i], job_offers[i].companyName,job_offers[i].companyType,job_offers[i].location,job_offers[i].jobPost,job_offers[i].package,job_offers[i].shiftTime,job_offers[i].jobType);
+        }
     }
 
     
