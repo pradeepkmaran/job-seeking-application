@@ -54,7 +54,7 @@ int count_company_profile_lines(){
     return line_count;
 }
 
-int string_to_int(char str[]){
+int string_to_int_seeker(char str[]){
     int res = 0;
     for(int i=0;i<strlen(str);i++){
         res*=10;
@@ -103,8 +103,8 @@ void read_company_data(struct job_offers job_offers[], int job_offers_count){
             strcpy(job_offers[indexline].companyType, content[2]);
             strcpy(job_offers[indexline].location, content[3]);
             strcpy(job_offers[indexline].jobPost, content[5+4*per_job]);
-            job_offers[indexline].package = string_to_int(content[6+4*per_job]);
-            job_offers[indexline].shiftTime = string_to_int(content[7+4*per_job]);
+            job_offers[indexline].package = string_to_int_seeker(content[6+4*per_job]);
+            job_offers[indexline].shiftTime = string_to_int_seeker(content[7+4*per_job]);
             strcpy(job_offers[indexline].jobType, content[8+4*per_job]);
             indexline++;
         }
@@ -201,7 +201,7 @@ void remove_offers(struct job_offers job_offers[], int job_offers_count, int pos
     job_offers[job_offers_count-1].package=0;
 }
 
-void check_compulsory(struct seeker_requirements_struct seeker_req[], struct job_offers job_offers[], int *job_offers_count, int importance[]){
+void check_seeker_compulsory(struct seeker_requirements_struct seeker_req[], struct job_offers job_offers[], int *job_offers_count, int importance[]){
     for(int i=0;i<7;i++){
         if(importance[i]>0){
             whilej:
@@ -315,6 +315,7 @@ float calculate_company_score(struct seeker_requirements_struct seeker_req, stru
 
     return score;
 }
+
 void sort_company_score(struct job_offers job_offers[], float company_scores[], int job_offers_count)
 {
     float temp;
@@ -334,8 +335,8 @@ void sort_company_score(struct job_offers job_offers[], float company_scores[], 
         }
     }
 }
-/* void job_seeker_menu(){ */
-int main(){
+
+void job_seeker_menu(){
     int job_offers_count = count_job_offers();
     int importance[7]={0,0,0,0,0,0,0};
 
@@ -344,7 +345,7 @@ int main(){
 
     get_seeker_requirements(seeker_req, importance);
     read_company_data(job_offers, job_offers_count);
-    check_compulsory(seeker_req, job_offers, &job_offers_count, importance);
+    check_seeker_compulsory(seeker_req, job_offers, &job_offers_count, importance);
     
     float company_scores[job_offers_count];
     for(int i=0;i<job_offers_count;i++){
@@ -355,14 +356,12 @@ int main(){
 
     if(job_offers_count>7){
         for(int i=0;i<7;i++){
-            printf("%.2f %s %s %s %s %d %d %s\n",company_scores[i], job_offers[i].companyName,job_offers[i].companyType,job_offers[i].location,job_offers[i].jobPost,job_offers[i].package,job_offers[i].shiftTime,job_offers[i].jobType);
+            printf("%.2f- %s %s %s %s %d %d %s\n",company_scores[i], job_offers[i].companyName,job_offers[i].companyType,job_offers[i].location,job_offers[i].jobPost,job_offers[i].package,job_offers[i].shiftTime,job_offers[i].jobType);
         }
     }
     else{
         for(int i=0;i<job_offers_count;i++){
-            printf("%.2f %s %s %s %s %d %d %s\n",company_scores[i], job_offers[i].companyName,job_offers[i].companyType,job_offers[i].location,job_offers[i].jobPost,job_offers[i].package,job_offers[i].shiftTime,job_offers[i].jobType);
+            printf("%.2f- %s %s %s %s %d %d %s\n",company_scores[i], job_offers[i].companyName,job_offers[i].companyType,job_offers[i].location,job_offers[i].jobPost,job_offers[i].package,job_offers[i].shiftTime,job_offers[i].jobType);
         }
     }
-
-    
 }

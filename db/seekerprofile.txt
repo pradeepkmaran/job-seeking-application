@@ -1,3 +1,4 @@
-Pradeep KM,18,m,0,2,BE,SSN College of Engineering,9.10,ME,SSN,9.0,1,Google,1,SDE,4,c++|Java|c|Python|,2,Introduction to Git|Introduction to Python|
+Pradeep KM,18,m,0,2,BE,SSN College of Engineering,9.10,ME,SSN College of Engineering,9.0,1,Apple,1,SDE,4,c++|Java|c|Python|,2,Introduction to Git|Introduction to Python|
 Niranjan B,19,m,0,1,BE,SSN College of Engineering,9.30,1,Apple,2,Engineering Manager,4,Java|c|Python|Git|,1,Introduction to Java|
-Nisha Ganesh,18,f,0,1,BE,SSN College of Engineering,9.90,2,HCL,2,Sales Executive,Wipro,1,Project Manager,4,C++|Java|Python|Pascal|,2,Introduction to Pascal|Bootcamp on Web Development|
+Nisha Ganesh,18,f,0,1,BE,SSN College of Engineering,9.90,2,HCL,2,Sales Executive,Wipro,1,Project Manager,4,C++|Java|Python|Pascal|,2,Introduction to Git|Introduction to Pascal|Bootcamp on Web Development|
+

@@ -1,6 +1,8 @@
 #include<stdio.h>
 #include"loginnew.h"
 #include"signup.h"
+#include"jobseeker.h"
+#include"company.h"
 
 void main(){
     choice:
@@ -16,7 +18,7 @@ void main(){
         goto Signup;
         break;
     case(3):
-        goto forgot_Password;
+        //goto forgot_Password;
         break;
     default:
         printf("Invalid choice");
@@ -28,10 +30,12 @@ void main(){
     if(login_result == 1){
         system("cls");
         printf("========JOBSEEKER LOGIN DONE========\n\n");
+        goto seeker_menu;
     }
     else if(login_result == 2){
         system("cls");
         printf("========COMPANY LOGIN DONE========\n\n");
+        goto company_menu;
     }
     else if(login_result == -1){
         printf("\nUSERNAME NOT FOUND.\nTry again.\n");
@@ -47,9 +51,15 @@ void main(){
     signup();
     system("cls");
     printf("========SIGNUP DONE========\n\n");
+    goto choice;
+
+    seeker_menu:
+    job_seeker_menu();
     goto end;
 
-    forgot_Password:
+    company_menu:
+    company_menu();
+    goto end;
 
     end:
 }
