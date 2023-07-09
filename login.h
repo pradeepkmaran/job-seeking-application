@@ -1,79 +1,96 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<math.h>
+#include<string.h>
 
+#define N 100
 
-int usernameCheck(char uniqueids[][7], int num, char pwarr[][8], char username[], char pw[])
+int pwcheck(char usernames[][N], char pwarr[][N], char pw[], int num, int index );
+
+int usernameCheck(char usernames[][N], char username[], int num)
 {
     /* Username check */
     int index = -1;
     for(int i=0;i<num;i++)
     {   
         int count=0;
-        for(int j=0;j<7;j++)
-        {   
-            if(username[j] == uniqueids[i][j])
-            {
-                ++count;
+        if(strlen(username) == strlen(usernames[i])-1){
+            for(int j=0;j<strlen(usernames[i])-1;j++)
+            {   
+                if(username[j] == usernames[i][j+1])
+                {
+                    ++count;
+                }
+                if(count == strlen(usernames[i])-1)
+                {
+                    index = i;
+                    goto returnstatement;
+                }
+                
             }
-            if(count == 7)
-            {
-                index = i;
-                break;
-            }
-            
-        }
-        
+        }      
     }
+    returnstatement: return index + 1;
+}
 
-    /* Password check */
+int pwcheck(char usernames[][N], char pwarr[][N], char pw[], int num, int index ){
     int count=0;
-    for(int j=0;j<8;j++)
-    {   
-        if(pw[j] == pwarr[index][j])
-        {
-            count++;
-        }
-        if(count == 8 )
-        {
-            return 1;
+    if(strlen(pw)==strlen(pwarr[index])){
+        for(int j=0;j<strlen(pwarr[index]);j++)
+        {   
+            if(pw[j] == pwarr[index][j])
+            {
+                count++;
+            }
+            if(count == strlen(pwarr[index]))
+            {
+                if(usernames[index][0] == '1'){
+                    return 1;
+                }
+                else if(usernames[index][0] == '2'){
+                    return 2;
+                }
+            }
         }
     }
     return 0;
-
 }
 
 
 int login(){
-    FILE *uniqueiddb, *pwdb;
+    FILE *usernamedb, *pwdb;
     char ch;
 
-    char username[8];
-    char pw[9];
-    char uniqueids[100][7];
-    char pwarr[100][8];
+    char username[N];
+    char pw[N];
+    char usernames[N][N];
+    char pwarr[N][N];
     
-    printf("Enter Username: ");
+    printf("\nEnter Username: ");
     scanf("%s", username);
-    printf("Enter PW: ");
-    scanf("%s", pw);
 
-    /* storing usernames in 'uniqueids' */
-    uniqueiddb= fopen("db\\uniqueiddb.txt","r");
+    /* storing usernames in 'usernames' */
+    usernamedb= fopen("db\\usernamedb.txt","r");
     int i=0;
     int num = 0;
     while(1){
-        ch = fgetc(uniqueiddb);
+        ch = fgetc(usernamedb);
         if(ch == EOF){
             break;
         }
-        uniqueids[num][i++] = ch;
         if(ch == '\n'){
+            usernames[num][i] = '\0';
             ++num;
             i=0;
         }
+        else{
+            usernames[num][i++] = ch;
+        }
     }
-
+    int usernameline = usernameCheck(usernames, username, num);
+    if(!usernameline){
+        return -1;
+    }
     /* Storing passwords in 'pwarr' */
     pwdb= fopen("db\\pwdb.txt","r");
     i=0;
@@ -84,6 +101,7 @@ int login(){
             break;
         }
         if(ch == '\n'){
+            pwarr[num][i] = '\0';
             ++num;
             i=0;
         }
@@ -92,16 +110,31 @@ int login(){
         }
     }
     num++;
+    
+    fclose(usernamedb);
+    fclose(pwdb);
 
     /* checking if username is in db and password matches the username*/
-    if(usernameCheck(uniqueids, num, pwarr, username, pw)){
-        fclose(uniqueiddb);
-        fclose(pwdb);
-        return 1;
-    }
-    else{
-        fclose(uniqueiddb);
-        fclose(pwdb);
+    int wrongpwcount = 0;
+    while(wrongpwcount < 3){
+        printf("Enter PW: ");
+        scanf("%s", pw);
+        int res = pwcheck(usernames, pwarr, pw, num, usernameline-1);
+        if(res){
+            return res;
+        }
+        else{
+            wrongpwcount++;
+        }
+        if(wrongpwcount == 1){
+            printf("WRONG PW. 2 MORE CHANCES.\n\n");
+            continue;
+        }
+        if(wrongpwcount == 2){
+            printf("WRONG PW. 1 MORE CHANCE.\n\n");
+            continue;
+        }
         return 0;
     }
+    
 }
