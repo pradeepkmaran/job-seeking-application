@@ -32,8 +32,7 @@ struct employer {
     char location[N];
 };
 
-int usernameCheckSignup(char username[])
-{
+int usernameCheckSignup(char username[]){
     FILE* usernamedb;
     usernamedb= fopen("db\\usernamedb.txt","r");
     int i=0;
@@ -56,18 +55,14 @@ int usernameCheckSignup(char username[])
     }
     fclose(usernamedb);
     /* Username check */
-    for(int i=0;i<num;i++)
-    {   
+    for(int i=0;i<num;i++){   
         int count=0;
         if(strlen(username) == strlen(usernames[i])-1){
-            for(int j=0;j<strlen(usernames[i])-1;j++)
-            {   
-                if(username[j] == usernames[i][j+1])
-                {
+            for(int j=0;j<strlen(usernames[i])-1;j++){   
+                if(username[j] == usernames[i][j+1]){
                     ++count;
                 }
-                if(count == strlen(usernames[i])-1)
-                {
+                if(count == strlen(usernames[i])-1){
                     return 0;
                 }
             }
@@ -76,8 +71,7 @@ int usernameCheckSignup(char username[])
     return 1;
 }
 
-void employerSignup()
-{
+void employerSignup(){
     char companyName[N];
     int companyAge; 
     char companyType[N];
@@ -225,8 +219,7 @@ void employerSignup()
     fclose(companyprofile);
 }
 
-void jobseekerSignup()
-{   
+void jobseekerSignup(){   
     /* Variables for data */
     char username[N];
     char pw[N];
@@ -405,7 +398,7 @@ void jobseekerSignup()
     seeker.age = age;
     seeker.gender = gender;
     seeker.marital_status = marital_status;
-    
+
         /* Assigning degrees */
     for(int i=0;i<N;i++){
         strcpy(seeker.degree[i], degree[i]);

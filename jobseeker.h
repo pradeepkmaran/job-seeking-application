@@ -126,11 +126,11 @@ struct seeker_requirements_struct{
 void get_seeker_requirements(struct seeker_requirements_struct seeker_req[], int importance[]){
     char choice;
     int importance_index=0;
+    while(getchar()!='\n');
     printf(" Rate the importance of requirement on 1-5.\n 0 for optional requirements.\n-1 to skip requirements.\n");
 
     printf("\nEnter y to search based on company name. n to search on other parameters: ");
     choice = getchar();
-
     if(choice == 'y'){
         printf("\nEnter number of companies to search: ");
         scanf("%d", &seeker_req[0].company_count);

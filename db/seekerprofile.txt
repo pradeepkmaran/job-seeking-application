@@ -1,4 +1,26 @@
 Pradeep KM,18,m,0,2,BE,SSN College of Engineering,9.10,ME,SSN College of Engineering,9.0,1,Apple,1,SDE,4,c++|Java|c|Python|,2,Introduction to Git|Introduction to Python|
-Niranjan B,19,m,0,1,BE,SSN College of Engineering,9.30,1,Apple,2,Engineering Manager,4,Java|c|Python|Git|,1,Introduction to Java|
-Nisha Ganesh,18,f,0,1,BE,SSN College of Engineering,9.90,2,HCL,2,Sales Executive,Wipro,1,Project Manager,4,C++|Java|Python|Pascal|,2,Introduction to Git|Introduction to Pascal|Bootcamp on Web Development|
-
+Niranjan B,19,m,0,2,BE,SSN College of Engineering,9.30,ME,SSN College of Engineering,9.9,2,Google,3,Project Manager,Apple,2,Sales Executive,5,c++|Java|c|Python|Git|,3,Introduction to Git|Introduction to Java|Introduction to Python|
+Nisha Ganesh,18,f,0,1,BE,SSN College of Engineering,9.90,2,HCL,2,Sales Executive,Wipro,1,Project Manager,4,C++|Java|Python|Pascal|,3,Introduction to Git|Introduction to Pascal|Bootcamp on Web Development|
+Magesh K,35,m,1,1,Be,Chennai Institute of Technology,7.50,1,TCS,15,Project Manager,2,C++|Oracle|,1,Introduction to C++|
+Mugil Krishna,69,f,1,2,BE,Pachayapas College,4.10,ME,Mohammed Sathak College of Arts and Sciences,2.0,2,HCL,16,Sales Executive,TCS,15,Assistant Manager,4,C++|Java|Python|Pascal|,3,Introduction to Git|Introduction to Pascal|Bootcamp on Web Development|
+Micheal Berdinath,50,m,1,1,BE,VIT Chennai,6.30,1,Apple,10,Data Analytist,4,C++|Java|Python|Pascal|,3,Introduction to Git|Introduction to Pascal|Bootcamp on Web Development|
+Nandhalal,42,m,1,2,BE,Indian Institute of Technology,9.50,MTech,PSG College,8.60,2,Apple,17,Assistant Manager,Mahindra,6,Data Analyst,4,C++|Java|Python|Pascal|,3,Introduction to Git|Introduction to Pascal|Bootcamp on Web Development|
+Naren Karthick,23,m,0,1,BTech,Indian Institute of Technology,8.40,1,Mahindra,2,Assistant Manager,3,Oracle|Python|C|,2,Introduction to Java|Introduction to C|
+Neeharika,30,f,1,2,BE,Chennai Institute of Technology,9.60,ME,SSN College of Engineering,8.55,2,HCL,4,Project Manager,TCS,5,Data Analyst,2,HTML|CSS|,2,Introduction to HTML|Introduction to CSS|
+Neha Shanmitha,27,f,0,1,BE,Chennai Institute of Technology,8.30,1,TCS,4,Assistant Manager,3,Oracle|Python|C|,2,Introduction to Java|Introduction to C|
+Nikhilesh,32,m,0,0,2,Google,4,Data Analyst,Apple,5,Data Analyst,3,Oracle|Python|C|,2,Introduction to Java|Introduction to C|
+Nithyashree,48,f,1,2,BE,VIT Chennai,8.70,ME,VIT Vellore,8.80,1,Mahindra,17,Project Manager,4,C++|Java|Python|Pascal|,3,Introduction to Git|Introduction to Pascal|Bootcamp on Web Development|
+Nivetha Dhanakoti,33,f,1,1,BE,VIT Vellore,7.40,2,HCL,2,Assistant Manager,TCS,7,Sales Executive,2,HTML|CSS|,2,Introduction to HTML|Introduction to CSS|
+Oviasree,40,f,1,2,BE,VIT Vellore,9.60,MTech,Indian Institute of Technology,9.0,1,HCL,9,Project Manager,4,C++|Java|Python|Pascal|,3,Introduction to Git|Introduction to Pascal|Bootcamp on Web Development|
+Pawan Kumar Ramnani,20,m,0,2,BE,Chennai Institute of Technology,7.60,ME,SSN College of Engineering,9.55,2,Mahindra,2,Sales Executive,TCS,1,Assistant Manager,3,Oracle|Python|C|,2,Introduction to Java|Introduction to C|
+Pranav Moorthy,28,m,0,1,BE,VIT Vellore,9.56,1,Google,5,Data Analyst,3,Oracle|Python|C|,2,Introduction to Java|Introduction to C|
+Rohan R,41,m,1,1,BE,VIT Chennai,9.30,2,HCL,8,SDE,Apple,9,Data Analyst,4,C++|Java|Python|Pascal|,3,Introduction to Git|Introduction to Pascal|Bootcamp on Web Development|
+Rohan R,38,m,1,1,BE,SNU Chennai,8.70,1,HCL,12,Assistant Manager,2,HTML|CSS|,2,Introduction to HTML|Introduction to CSS|
+Tharun Senthuravel,25,m,0,0,2,HCL,2,Sales Executive,Mahindra,4,Project Manager,3,Oracle|Python|C|,2,Introduction to Java|Introduction to C|
+Rohith,46,m,0,2,BE,SNU Chennai,9.10,ME,VIT Chennai,9.6,1,Apple,19,Project Manager,4,C++|Java|Python|Pascal|,3,Introduction to Git|Introduction to Pascal|Bootcamp on Web Development|
+Prashanna Kumar,60,m,0,1,BE,SNU Chennai,7.80,2,TCS,15,SDE,Mahindra,20,Data Analyst,4,C++|Java|Python|Pascal|,2,Introduction to Git|Introduction to Python|
+Sai Sandeep,22,m,0,1,BE,VIT Chennai,8.90,1,Mahindra,2,Assistant Manager,2,HTML|CSS|,2,Introduction to HTML|Introduction to CSS|
+Samyuktaa Sivakumar,39,f,1,2,BTech,VIT Chennai,8.0,ME,Chennai Institute of Technology,7.8,1,TCS,2,Project Manager,3,Oracle|Python|C|,2,Introduction to Java|Introduction to C|
+Rishab,33,m,1,1,BE,VIT Vellore,9.80,2,TCS,4,SDE,Mahindra,1,Project Manager,2,HTML|CSS|,2,Introduction to HTML|Introduction to CSS|
+Rajesh G,45,m,1,1,BE,SSN College of Engineering,9.90,1,Google,2,Data Analyst,4,C++|Java|Python|Pascal|,2,Introduction to Git|Introduction to Python|
+James Bond,35,m,0,2,BE,SSN College of Engineering,9.90,ME,SSN College of Engineering,9.60,2,Google,5,Project Manager,Apple,5,Assistant Manager,3,C++|Java|Python|,2,Introduction to C|Introduction to Python|

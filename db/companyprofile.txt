@@ -14,4 +14,4 @@ Blue Origin,30,Service,USA,1,Astronaut,130400,4,offline
 ISRO,30,Service,India,1,Rocket Engineer,130400,4,offline
 Mahindra,30,Service,India,1,Rocket Engineer,130400,4,offline
 TATA,30,Service,India,1,Rocket Engineer,130400,4,offline
-Hyundai,30,Service,India,1,Rocket Engineer,130400,4,offline
+Hyundai,30,Service,India,1,Rocket Engineer,130400,4,offlineDell,15,service,India,2,Project Manager,150000,1,offline,Android Developer,100000,2,wfh

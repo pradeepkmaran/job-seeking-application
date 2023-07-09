@@ -49,7 +49,8 @@ int split_input(char raw[], char out[][N]){
         if(raw[i] != '|'){
             out[j][c++] = raw[i];
         }
-        else{
+        else if(raw[i] == '|'){
+            out[j][c] = '\0';
             j++;
             c=0;
         }
@@ -705,6 +706,7 @@ void company_menu(){
         seekers_score[i] = calculate_seeker_score(req[0], seekers[i], credits, importance);
     }
     sort_seeker_scores(seekers, seekers_score, seekers_count);
+    printf("########################### Selected Seekers ###########################\n");
     if(seekers_count>7){
         for(int i=0;i<7;i++){
             printf("%.2f- %s %d %c %d\n",seekers_score[i], seekers[i].name, seekers[i].age, seekers[i].gender, seekers[i].marital_status);
@@ -763,4 +765,6 @@ void company_menu(){
             }
         }
     }
+    
+    printf("#########################################################");
 }
