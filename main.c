@@ -1,9 +1,7 @@
 #include<stdio.h>
-#include"login.h"
-#include"signup.h"
 #include"jobseeker.h"
 #include"company.h"
-
+#include"modifydetails.h"
 void main(){
     choice: while(0!=0);
     system("cls");
@@ -20,7 +18,7 @@ void main(){
         goto Signup;
         break;
     case(3):
-        //goto forgot_Password;
+        goto Modify;
         break;
     default:
         printf("Invalid choice");
@@ -53,6 +51,11 @@ void main(){
     system("cls");
     printf("========SIGNUP DONE========\n\n");
     goto choice;
+
+    Modify: modify();
+    system("cls");
+    printf("========MODIFIED DETAILS========\n\n==========LOGIN AGAIN===========\n\n");
+    goto Login;
 
     seeker_menu: job_seeker_menu();
     goto end;

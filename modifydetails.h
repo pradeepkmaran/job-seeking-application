@@ -602,7 +602,3 @@ int modify(){
         return 0;
     }
 }
-
-int main(){
-    int res = modify();
-}

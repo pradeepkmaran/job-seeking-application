@@ -22,5 +22,4 @@ Sai Sandeep,22,m,0,1,BE,VIT Chennai,8.90,1,Mahindra,2,Assistant Manager,2,HTML|C
 Samyuktaa Sivakumar,39,f,1,2,BTech,VIT Chennai,8.0,ME,Chennai Institute of Technology,7.8,1,TCS,2,Project Manager,3,Oracle|Python|C|,2,Introduction to Java|Introduction to C|
 Rishab,33,m,1,1,BE,VIT Vellore,9.80,2,TCS,4,SDE,Mahindra,1,Project Manager,2,HTML|CSS|,2,Introduction to HTML|Introduction to CSS|
 Rajesh G,45,m,1,1,BE,SSN College of Engineering,9.90,1,Google,2,Data Analyst,4,C++|Java|Python|Pascal|,2,Introduction to Git|Introduction to Python|
-James Bond,35,m,0,2,BE,SSN College of Engineering,9.90,ME,SSN College of Engineering,9.60,2,Google,5,Project Manager,Apple,5,Assistant Manager,3,C++|Java|Python|,2,Introduction to C|Introduction to Python|
-Pradeep KM,18,m,0,1,BE,SSN College of Engineering,9.00,1,Google,3,Network Test Engineer,3,C++|Java|HTML|,1,Introduction to HTML|
+Pradeep KM,19,m,0,1,BE,SSN College of Engineering,9.00,1,Google,3,Network Test Engineer,3,C++|Java|HTML|,1,Introduction to HTML|
