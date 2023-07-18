@@ -1,4 +1,3 @@
-Pradeep KM,18,m,0,2,BE,SSN College of Engineering,9.10,ME,SSN College of Engineering,9.0,1,Apple,1,SDE,4,c++|Java|c|Python|,2,Introduction to Git|Introduction to Python|
 Niranjan B,19,m,0,2,BE,SSN College of Engineering,9.30,ME,SSN College of Engineering,9.9,2,Google,3,Project Manager,Apple,2,Sales Executive,5,c++|Java|c|Python|Git|,3,Introduction to Git|Introduction to Java|Introduction to Python|
 Nisha Ganesh,18,f,0,1,BE,SSN College of Engineering,9.90,2,HCL,2,Sales Executive,Wipro,1,Project Manager,4,C++|Java|Python|Pascal|,3,Introduction to Git|Introduction to Pascal|Bootcamp on Web Development|
 Magesh K,35,m,1,1,Be,Chennai Institute of Technology,7.50,1,TCS,15,Project Manager,2,C++|Oracle|,1,Introduction to C++|
@@ -24,3 +23,4 @@ Samyuktaa Sivakumar,39,f,1,2,BTech,VIT Chennai,8.0,ME,Chennai Institute of Techn
 Rishab,33,m,1,1,BE,VIT Vellore,9.80,2,TCS,4,SDE,Mahindra,1,Project Manager,2,HTML|CSS|,2,Introduction to HTML|Introduction to CSS|
 Rajesh G,45,m,1,1,BE,SSN College of Engineering,9.90,1,Google,2,Data Analyst,4,C++|Java|Python|Pascal|,2,Introduction to Git|Introduction to Python|
 James Bond,35,m,0,2,BE,SSN College of Engineering,9.90,ME,SSN College of Engineering,9.60,2,Google,5,Project Manager,Apple,5,Assistant Manager,3,C++|Java|Python|,2,Introduction to C|Introduction to Python|
+Pradeep KM,18,m,0,1,BE,SSN College of Engineering,9.00,1,Google,3,Network Test Engineer,3,C++|Java|HTML|,1,Introduction to HTML|

@@ -191,7 +191,7 @@ void employerSignup(){
     }
     strcpy(emp.location, location);
 
-    /* Storing username and pw  */
+    /* Storing username and pw */
     FILE* usernamedb;
     usernamedb  = fopen("db//usernamedb.txt", "a");
     fprintf(usernamedb, "2%s\n", username);

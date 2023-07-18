@@ -1,4 +1,3 @@
-1pradeepkmaran
 2googleinc
 1niranjanb
 2appleinc
@@ -9,7 +8,6 @@
 2disneyland
 2samsungnokia
 2twittermusk
-2primestar
 2teslabtc
 2spacex
 2borigin
@@ -40,4 +38,6 @@
 1rishab_xyz
 1rajeshpaul
 1jamesbond007
+1pradeepkmaran
 2dellindia
+2primestar

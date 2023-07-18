@@ -5,8 +5,10 @@
 #include"company.h"
 
 void main(){
-    choice:
-    printf("\n1 - Login\n2 - Signup\n3 - Forgot Password\n\nEnter your choice: ");
+    choice: while(0!=0);
+    system("cls");
+    printf("========WELCOME TO KORTHUVIDUVOM========\n\n");
+    printf("\n1 - Login\n2 - Signup\n3 - Modify User Details\n\nEnter your choice: ");
     int choice;
     scanf("%d", &choice);
     switch (choice)
@@ -25,7 +27,7 @@ void main(){
         goto end;
     }
 
-    Login: 
+    Login: while(0!=0);
     int login_result = login();
     if(login_result == 1){
         system("cls");
@@ -47,19 +49,16 @@ void main(){
     }
     goto end;
 
-    Signup: 
-    signup();
+    Signup: signup();
     system("cls");
     printf("========SIGNUP DONE========\n\n");
     goto choice;
 
-    seeker_menu:
-    job_seeker_menu();
+    seeker_menu: job_seeker_menu();
     goto end;
 
-    company_menu:
-    company_menu();
+    company_menu: company_menu();
     goto end;
 
-    end:
+    end: while(0!=0);
 }

@@ -103,6 +103,18 @@ float string_to_float(char str[]){
     return res+dec;
 }
 
+char degrees_list[N][N], institutions_list[N][N], exp_companies_list[N][N], exp_post_list[N][N], skills_list[N][N], certifications_list[N][N]; 
+int degrees_count=0, institutions_count=0, exp_companies_count=0, exp_post_count=0, skills_count=0, certifications_count=0; 
+
+int company_check_unique(char arr[N][N], char val[N]){
+    for(int i=0;i<N;i++){
+        if(stricmp(arr[i], val) == 0){
+            return 0;
+        }
+    }
+    return 1;
+}
+
 void read_seeker_data(struct seeker_details seekers[], int seeker_count){
     char ch;
     FILE *fp = fopen("db//seekerprofile.txt", "r");
@@ -137,6 +149,12 @@ void read_seeker_data(struct seeker_details seekers[], int seeker_count){
                 strcpy(seekers[line].degrees[i], content[5+(i*3)]);
                 strcpy(seekers[line].institution[i], content[6+(i*3)]);
                 seekers[line].cgpa[i] = string_to_float(content[7+(i*3)]);
+                if(company_check_unique(degrees_list, content[5+(i*3)])){
+                    strcpy(degrees_list[degrees_count++], content[5+(i*3)]);
+                }
+                if(company_check_unique(institutions_list, content[6+(i*3)])){
+                    strcpy(institutions_list[institutions_count++], content[6+(i*3)]);
+                }
             }
             int exppos = 4+(seekers[line].degree_count*3)+1;
             int total_experience_years= 0;
@@ -146,6 +164,13 @@ void read_seeker_data(struct seeker_details seekers[], int seeker_count){
                 seekers[line].experience_years[i] = string_to_int_company(content[exppos + (i*3) + 2]);
                 total_experience_years+=seekers[line].experience_years[i];
                 strcpy(seekers[line].experience_post[i], content[exppos + (i*3) + 3]);
+
+                if(company_check_unique(exp_companies_list, content[exppos + (i*3) + 1])){
+                    strcpy(exp_companies_list[exp_companies_count++], content[exppos + (i*3) + 1]);
+                }
+                if(company_check_unique(exp_post_list, content[exppos + (i*3) + 3])){
+                    strcpy(exp_post_list[exp_post_count++], content[exppos + (i*3) + 3]);
+                }
             }
             seekers[line].total_experience_years = total_experience_years;
             int skillpos =  exppos + (seekers[line].experience_count*3)+1;
@@ -162,6 +187,11 @@ void read_seeker_data(struct seeker_details seekers[], int seeker_count){
                     c=0;
                 }
             }
+            for(int i=0;i<seekers[line].skills_count;i++){
+                if(company_check_unique(skills_list, seekers[line].skills[i])){
+                    strcpy(skills_list[skills_count++], seekers[line].skills[i]);
+                }
+            }
             seekers[line].certifications_count = string_to_int_company(content[(seekers[line].degree_count*3)+(seekers[line].experience_count*3)+8]);
             char rawcertifications[N];
             strcpy(rawcertifications, content[(seekers[line].degree_count*3)+(seekers[line].experience_count*3)+9]);
@@ -173,6 +203,11 @@ void read_seeker_data(struct seeker_details seekers[], int seeker_count){
                 else{
                     j++;
                     c=0;
+                }
+            }
+            for(int i=0;i<seekers[line].certifications_count;i++){
+                if(company_check_unique(certifications_list, seekers[line].certifications[i])){
+                    strcpy(certifications_list[certifications_count++], seekers[line].certifications[i]);
                 }
             }
         }
@@ -207,6 +242,8 @@ void get_company_requirements(struct company_req req[], int credits[], int impor
 
     credit_index = 0;
     int point_index=0;
+    
+    system("cls");
     if(credits[credit_index] != -1){
         printf("\nEnter the Range of age (21-35): ");
         scanf("%d-%d", &req[0].age[0],&req[0].age[1]);
@@ -216,15 +253,23 @@ void get_company_requirements(struct company_req req[], int credits[], int impor
         req[0].age[0] = 0;
         req[0].age[1] = 65;
     }
+    
+    system("cls");
     credit_index++;
     if(credits[credit_index] != -1){
         printf("\nEnter the gender(m/f): ");
         req[0].gender = getchar();
         while(getchar()!='\n');
     }
+    
+    system("cls");
     credit_index++;
     if(credits[credit_index] != -1){
         char rawstring[N];
+        printf("======DEGREES======\n");
+        for(int i=0;i<degrees_count;i++){
+            printf("%d. %s\n",i+1, degrees_list[i]);
+        }
         printf("Enter degrees (BE|ME|MTech|..): ");
         fgets(rawstring, N, stdin);
         rawstring[strlen(rawstring)-1]='|';
@@ -240,10 +285,16 @@ void get_company_requirements(struct company_req req[], int credits[], int impor
     else{
         req[0].degree_count = 0;
     }
+    
+    system("cls");
     credit_index++;
     point_index=0;
     if(credits[credit_index] != -1){
         char rawstring[N];
+        printf("======INSTITUTIONS======\n");
+        for(int i=0;i<institutions_count;i++){
+            printf("%d. %s\n",i+1, institutions_list[i]);
+        }
         printf("Enter institutions (SSN College of Engineering|Shiv Nadar University|..): ");
         fgets(rawstring, N, stdin);
         rawstring[strlen(rawstring)-1]='|';
@@ -259,6 +310,8 @@ void get_company_requirements(struct company_req req[], int credits[], int impor
     else{
         req[0].institutions_count = 0;
     }
+
+    system("cls");
     point_index=0;
     credit_index++;
     if(credits[credit_index] != -1){
@@ -269,9 +322,15 @@ void get_company_requirements(struct company_req req[], int credits[], int impor
     else{
         req[0].cgpa = 0;
     }
+    
+    system("cls");
     credit_index++;
     if(credits[credit_index] != -1){
         char rawstring[N];
+        printf("======PREVIOUS WORK COMPANIES======\n");
+        for(int i=0;i<exp_companies_count;i++){
+            printf("%d. %s\n",i+1, exp_companies_list[i]);
+        }
         printf("Enter the preferred previous companies of work(Apple|Google|Microsoft|..): ");
         fgets(rawstring, N, stdin);
         rawstring[strlen(rawstring)-1]='|';
@@ -287,6 +346,8 @@ void get_company_requirements(struct company_req req[], int credits[], int impor
     else{
         req[0].experience_companies_count = 0;
     }
+    
+    system("cls");
     credit_index++;
     point_index=0;
     if(credits[credit_index] != -1){
@@ -297,9 +358,15 @@ void get_company_requirements(struct company_req req[], int credits[], int impor
     else{
         req[0].experience_years = 0;
     }
+    
+    system("cls");
     credit_index++;
     if(credits[credit_index] != -1){
         char rawstring[N];
+        printf("======PREVIOUS WORK POSTS======\n");
+        for(int i=0;i<exp_post_count;i++){
+            printf("%d. %s\n",i+1, exp_post_list[i]);
+        }
         printf("Enter the preferred previous job posts of work(Android Developer|Project Manager|..): ");
         fgets(rawstring, N, stdin);
         rawstring[strlen(rawstring)-1]='|';
@@ -315,10 +382,16 @@ void get_company_requirements(struct company_req req[], int credits[], int impor
     else{
         req[0].experience_post_count = 0;
     }
+    
+    system("cls");
     credit_index++;
     point_index=0;
     if(credits[credit_index] != -1){
         char rawstring[N];
+        printf("======SKILLS======\n");
+        for(int i=0;i<skills_count;i++){
+            printf("%d. %s\n",i+1, skills_list[i]);
+        }
         printf("Enter the preferred skills(c++|Java|..): ");
         fgets(rawstring, N, stdin);
         rawstring[strlen(rawstring)-1]='|';
@@ -334,10 +407,16 @@ void get_company_requirements(struct company_req req[], int credits[], int impor
     else{
         req[0].skills_count = 0;
     }
+    
+    system("cls");
     point_index=0;
     credit_index++;
     if(credits[credit_index] != -1){
         char rawstring[N];
+        printf("======CERTIFICATIONS======\n");
+        for(int i=0;i<certifications_count;i++){
+            printf("%d. %s\n",i+1, certifications_list[i]);
+        }
         printf("Enter the preferred certifications(Intro to Python|Intro to Java|..): ");
         fgets(rawstring, N, stdin);
         rawstring[strlen(rawstring)-1]='|';
@@ -355,50 +434,30 @@ void get_company_requirements(struct company_req req[], int credits[], int impor
     }
     point_index=0;
     credit_index=0;
+    system("cls");
 }
 
 void remove_seeker(struct seeker_details seekers[], int seeker_count, int pos){
     for(int i=pos; i<seeker_count-1; i++){
         seekers[i] = seekers[i+1];
     }
-    /* strcpy(seekers[seeker_count-1].name,'\0');
-    seekers[seeker_count-1].age=0;
-    seekers[seeker_count-1].gender='\0';
-    seekers[seeker_count-1].marital_status=0;
-    for(int i=0; i<seekers[seeker_count-1].degree_count;i++){
-        strcpy(seekers[seeker_count-1].degrees[i],"\0");
-        strcpy(seekers[seeker_count-1].institution[i],"\0");
-        seekers[seeker_count-1].cgpa[i] = 0;
-    }
-    seekers[seeker_count-1].degree_count=0;
-    for(int i=0; i<seekers[seeker_count-1].experience_count;i++){
-        strcpy(seekers[seeker_count-1].experience_companies[i],"\0");
-        strcpy(seekers[seeker_count-1].experience_post[i],"\0");
-        seekers[seeker_count-1].experience_years[i] = 0;
-    }
-    seekers[seeker_count-1].experience_count=0;
-    seekers[seeker_count-1].total_experience_years=0;
-    for(int i=0; i<seekers[seeker_count-1].skills_count;i++){
-        strcpy(seekers[seeker_count-1].skills[i],"\0");
-    }
-    seekers[seeker_count-1].skills_count=0;
-    for(int i=0; i<seekers[seeker_count-1].certifications_count;i++){
-        strcpy(seekers[seeker_count-1].certifications[i],"\0");
-    }
-    seekers[seeker_count-1].certifications_count=0; */
 }
 
-void check_company_compulsory(struct company_req req[], struct seeker_details seekers[], int credits[10], int *seeker_count){
+int removed_seekers_count = 0;
+
+void check_company_compulsory(struct company_req req[], struct seeker_details seekers[], struct seeker_details removed_seekers[], int credits[10], int *seeker_count){
     int i=-1;
     while(i++<(*seeker_count)-1){
         if(credits[0]>0){
             if(seekers[i].age<req[0].age[0] || seekers[i].age>req[0].age[1]){
+                removed_seekers[removed_seekers_count++] = seekers[i];
                 remove_seeker(seekers, (*seeker_count)--, i);
                 continue;
             }
         }
         if(credits[1]>0){
             if(seekers[i].gender != req[0].gender){
+                removed_seekers[removed_seekers_count++] = seekers[i];
                 remove_seeker(seekers, (*seeker_count)--, i);
                 continue;
             }
@@ -414,6 +473,7 @@ void check_company_compulsory(struct company_req req[], struct seeker_details se
                 }
             }
             if(!flag){
+                removed_seekers[removed_seekers_count++] = seekers[i];
                 remove_seeker(seekers, (*seeker_count)--, i);
                 continue;
             }          
@@ -430,6 +490,7 @@ void check_company_compulsory(struct company_req req[], struct seeker_details se
                 }
             }
             if(!flag){
+                removed_seekers[removed_seekers_count++] = seekers[i];
                 remove_seeker(seekers, (*seeker_count)--, i);
                 continue;
             }          
@@ -438,6 +499,7 @@ void check_company_compulsory(struct company_req req[], struct seeker_details se
         if(credits[4]>0){
             for(int j=0;j<seekers[i].degree_count;j++){
                 if(seekers[i].cgpa[j] < req[0].cgpa){
+                    removed_seekers[removed_seekers_count++] = seekers[i];
                     remove_seeker(seekers, (*seeker_count)--, i);
                     continue;
                 }
@@ -455,6 +517,7 @@ void check_company_compulsory(struct company_req req[], struct seeker_details se
                 }
             }
             if(!flag){
+                removed_seekers[removed_seekers_count++] = seekers[i];
                 remove_seeker(seekers, (*seeker_count)--, i);
                 continue;
             }
@@ -462,6 +525,7 @@ void check_company_compulsory(struct company_req req[], struct seeker_details se
         credit6:
         if(credits[6]>0){
             if(req[0].experience_years < seekers[i].total_experience_years){
+                removed_seekers[removed_seekers_count++] = seekers[i];
                 remove_seeker(seekers, (*seeker_count)--, i);
                 continue;
             }
@@ -477,6 +541,7 @@ void check_company_compulsory(struct company_req req[], struct seeker_details se
                 }
             }
             if(!flag){
+                removed_seekers[removed_seekers_count++] = seekers[i];
                 remove_seeker(seekers, (*seeker_count)--, i);
                 continue;
             }  
@@ -493,6 +558,7 @@ void check_company_compulsory(struct company_req req[], struct seeker_details se
                 }
             }
             if(!flag){
+                removed_seekers[removed_seekers_count++] = seekers[i];
                 remove_seeker(seekers, (*seeker_count)--, i);
                 continue;
             }          
@@ -509,11 +575,12 @@ void check_company_compulsory(struct company_req req[], struct seeker_details se
                 }
             }
             if(!flag){
+                removed_seekers[removed_seekers_count++] = seekers[i];
                 remove_seeker(seekers, (*seeker_count)--, i);
                 continue;
             }          
         }
-        endloop:
+        endloop: while(0!=0);
     }
 }
 
@@ -691,80 +758,138 @@ void sort_seeker_scores(struct seeker_details seekers[], float seekers_score[], 
     }
 }
 
+struct seeker_details removed_seekers[N];
 void company_menu(){
     int seekers_count=count_seeker_profile_lines();
     struct seeker_details seekers[seekers_count];
     struct company_req req[1];
     int credits[10];
     int importance[10][N];
+
     read_seeker_data(seekers, seekers_count);
-    get_company_requirements(req, credits, importance);
-    check_company_compulsory(req, seekers, credits, &seekers_count);
+    
+    get_company_requirements(req, credits, importance); 
+    check_company_compulsory(req, seekers, removed_seekers, credits, &seekers_count);
 
     float seekers_score[seekers_count];
     for(int i=0;i<seekers_count;i++){
         seekers_score[i] = calculate_seeker_score(req[0], seekers[i], credits, importance);
     }
     sort_seeker_scores(seekers, seekers_score, seekers_count);
-    printf("########################### Selected Seekers ###########################\n");
+
+    float removed_seekers_score[removed_seekers_count];
+    for(int i=0;i<removed_seekers_count;i++){
+        removed_seekers_score[i] = calculate_seeker_score(req[0], removed_seekers[i], credits, importance);
+    }
+    sort_seeker_scores(removed_seekers, removed_seekers_score, removed_seekers_count);
+
+    printf("============ YOUR REQUIREMENTS ============\n\n");
+    
+    
+    printf("============= SELECTED SEEKERS =============\n");
     if(seekers_count>7){
         for(int i=0;i<7;i++){
-            printf("%.2f- %s %d %c %d\n",seekers_score[i], seekers[i].name, seekers[i].age, seekers[i].gender, seekers[i].marital_status);
-            printf("Number of degrees: %d\n", seekers[i].degree_count);
+            printf("%d) NAME: %s\n", i+1, seekers[i].name);
+            printf("AGE: %d\n", seekers[i].age);
+            switch(seekers[i].gender){
+                case('m'): printf("GENDER: Male\n"); break;
+                case('f'): printf("GENDER: Female\n"); break;
+                default: printf("GENDER: Unavailable\n");
+            }
+            switch(seekers[i].marital_status){
+                case(1): printf("MARITAL STATUS: Married\n"); break;
+                case(0): printf("MARITAL STATUS: Unmarried\n"); break;
+                default: printf("MARITAL STATUS: Unavailable\n");
+            }
             for(int j=0;j<seekers[i].degree_count;j++){
-                printf("Degree: %s\nInstitution: %s\nCGPA: %.2\n", seekers[i].degrees[j], seekers[i].institution[j], seekers[i].cgpa[j]);
+                printf("DEGREE %d : %s\n", j+1, seekers[i].degrees[j] );
+                printf("INSTITUTION : %s\n", seekers[i].institution[j] );
+                printf("CGPA : %.2f\n", seekers[i].cgpa[j] );
             }
-            printf("Number of previous work experience: %d\n", seekers[i].experience_count);
             for(int j=0;j<seekers[i].experience_count;j++){
-                printf("Company: %s\nYears of Experience: %d\nJob Role: %s\n", seekers[i].experience_companies[j], seekers[i].experience_years[j], seekers[i].experience_post[j]);
+                printf("COMPANY %d : %s\n", j+1, seekers[i].experience_companies[j] );
+                printf("JOB POST : %s\n", seekers[i].experience_post[j] );
+                printf("YEARS : %d\n", seekers[i].experience_years[j] );
             }
-            printf("Skills: ");
+            printf("SKILLS:\n");
             for(int j=0;j<seekers[i].skills_count;j++){
-                if(j!=seekers[i].skills_count-1){
-                    printf("%s, ",seekers[i].skills[j]);
-                    continue;
-                }
-                printf("%s",seekers[i].skills[j]);
+                printf("%d.%s\n", j+1, seekers[i].skills[j]);
             }
-            printf("\nCertifications: ");
+            printf("CERITIFICATIONS:\n");
             for(int j=0;j<seekers[i].certifications_count;j++){
-                if(j!=seekers[i].certifications_count-1){
-                    printf("%s, ",seekers[i].certifications[j]);
-                    continue;
-                }
-                printf("%s\n\n",seekers[i].certifications[j]);
+                printf("%d.%s\n", j+1, seekers[i].certifications[j]);
             }
+            printf("\n");
         }
     }
     else{
         for(int i=0;i<seekers_count;i++){
-            printf("%.2f- %s %d %c %d\n",seekers_score[i], seekers[i].name, seekers[i].age, seekers[i].gender, seekers[i].marital_status);
-            printf("Number of degrees: %d\n", seekers[i].degree_count);
+            printf("%d) NAME: %s\n", i+1, seekers[i].name);
+            printf("AGE: %d\n", seekers[i].age);
+            switch(seekers[i].gender){
+                case('m'): printf("GENDER: Male\n"); break;
+                case('f'): printf("GENDER: Female\n"); break;
+                default: printf("GENDER: Unavailable\n");
+            }
+            switch(seekers[i].marital_status){
+                case(1): printf("MARITAL STATUS: Married\n"); break;
+                case(0): printf("MARITAL STATUS: Unmarried\n"); break;
+                default: printf("MARITAL STATUS: Unavailable\n");
+            }
             for(int j=0;j<seekers[i].degree_count;j++){
-                printf("Degree: %s\nInstitution: %s\nCGPA: %.2f\n", seekers[i].degrees[j], seekers[i].institution[j], seekers[i].cgpa[j]);
+                printf("DEGREE %d : %s\n", j+1, seekers[i].degrees[j] );
+                printf("INSTITUTION : %s\n", seekers[i].institution[j] );
+                printf("CGPA : %.2f\n", seekers[i].cgpa[j] );
             }
-            printf("Number of previous work experience: %d\n", seekers[i].experience_count);
             for(int j=0;j<seekers[i].experience_count;j++){
-                printf("Company: %s\nYears of Experience: %d\nJob Role: %s\n", seekers[i].experience_companies[j], seekers[i].experience_years[j], seekers[i].experience_post[j]);
+                printf("COMPANY %d : %s\n", j+1, seekers[i].experience_companies[j] );
+                printf("JOB POST : %s\n", seekers[i].experience_post[j] );
+                printf("YEARS : %d\n", seekers[i].experience_years[j] );
             }
-            printf("Skills: ");
+            printf("SKILLS:\n");
             for(int j=0;j<seekers[i].skills_count;j++){
-                if(j!=seekers[i].skills_count-1){
-                    printf("%s, ",seekers[i].skills[j]);
-                    continue;
-                }
-                printf("%s",seekers[i].skills[j]);
+                printf("%d.%s\n", j+1, seekers[i].skills[j]);
             }
-            printf("\nCertifications: ");
+            printf("CERITIFICATIONS:\n");
             for(int j=0;j<seekers[i].certifications_count;j++){
-                if(j!=seekers[i].certifications_count-1){
-                    printf("%s, ",seekers[i].certifications[j]);
-                    continue;
-                }
-                printf("%s\n\n",seekers[i].certifications[j]);
+                printf("%d.%s\n", j+1, seekers[i].certifications[j]);
             }
+            printf("\n");
         }
     }
     
-    printf("#########################################################");
+    printf("============= OTHER RECOMMENDATIONS =============\n");
+    for(int i=0;i<5;i++){
+        printf("%d) NAME: %s\n", i+1, removed_seekers[i].name);
+        printf("AGE: %d\n", removed_seekers[i].age);
+        switch(removed_seekers[i].gender){
+            case('m'): printf("GENDER: Male\n"); break;
+            case('f'): printf("GENDER: Female\n"); break;
+            default: printf("GENDER: Unavailable\n");
+        }
+        switch(removed_seekers[i].marital_status){
+            case(1): printf("MARITAL STATUS: Married\n"); break;
+            case(0): printf("MARITAL STATUS: Unmarried\n"); break;
+            default: printf("MARITAL STATUS: Unavailable\n");
+        }
+        for(int j=0;j<removed_seekers[i].degree_count;j++){
+            printf("DEGREE %d : %s\n", j+1, removed_seekers[i].degrees[j] );
+            printf("INSTITUTION : %s\n", removed_seekers[i].institution[j] );
+            printf("CGPA : %.2f\n", removed_seekers[i].cgpa[j] );
+        }
+        for(int j=0;j<removed_seekers[i].experience_count;j++){
+            printf("COMPANY %d : %s\n", j+1, removed_seekers[i].experience_companies[j] );
+            printf("JOB POST : %s\n", removed_seekers[i].experience_post[j] );
+            printf("YEARS : %d\n", removed_seekers[i].experience_years[j] );
+        }
+        printf("SKILLS:\n");
+        for(int j=0;j<removed_seekers[i].skills_count;j++){
+            printf("%d.%s\n", j+1, removed_seekers[i].skills[j]);
+        }
+        printf("CERITIFICATIONS:\n");
+        for(int j=0;j<removed_seekers[i].certifications_count;j++){
+            printf("%d.%s\n", j+1, removed_seekers[i].certifications[j]);
+        }
+        printf("\n");
+    }
 }

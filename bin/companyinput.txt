@@ -22,7 +22,7 @@ Apple|Google
 0
 Android Developer
 10
-C++|Java|Git|C
+C++|Java|Git|c
 9
 9
 9
