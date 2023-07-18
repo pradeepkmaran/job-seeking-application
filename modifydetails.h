@@ -582,10 +582,12 @@ int modify(){
             if(res == 1){
                 remove_seeker_details(count, usernameline);
                 jobseeker_signup_for_modify(username, pw);
+                break;
             }
             else{
                 remove_company_details(count, usernameline);
                 company_signup_for_modify(username, pw);
+                break;
             }
         }
         else{

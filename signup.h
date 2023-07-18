@@ -21,6 +21,7 @@ struct job_seeker {
     char skills[N][N];
     char certifications[N][N];
 };
+
 struct employer {
     char companyName[N];
     int companyAge; 

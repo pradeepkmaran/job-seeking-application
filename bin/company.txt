@@ -1,7 +1,0 @@
-company name
-company age
-company type
-job post
-package
-location
-shift time

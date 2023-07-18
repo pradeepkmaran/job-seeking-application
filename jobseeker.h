@@ -143,13 +143,12 @@ void get_seeker_requirements(struct seeker_requirements_struct seeker_req[], int
     char choice;
     int importance_index=0;
     while(getchar()!='\n');
-    printf(" Rate the importance of requirement on 1-5.\n 0 for optional requirements.\n-1 to skip requirements.\n");
-
     printf("\nEnter y to search based on company name. n to search on other parameters: ");
     choice = getchar();
     
     system("cls");
     if(choice == 'y'){
+        printf(" Rate the importance of requirement on 1-5.\n 0 for optional requirements.\n-1 to skip requirements.\n\n");
         printf("======Companies Available======\n");
         for(int i=0;i<company_name_count;i++){
             printf("%d. %s\n",i+1, company_name_list[i]);
@@ -159,7 +158,7 @@ void get_seeker_requirements(struct seeker_requirements_struct seeker_req[], int
         while(getchar()!='\n');
 
         for(int i=0;i<seeker_req[0].company_count;i++){
-            printf("Enter name of company %d: ",i+1);
+            printf("Type the name of company %d: ",i+1);
             fgets(seeker_req[0].company_name[i], N, stdin);
             seeker_req[0].company_name[i][strlen(seeker_req[0].company_name[i])-1]='\0';
         }
@@ -172,23 +171,26 @@ void get_seeker_requirements(struct seeker_requirements_struct seeker_req[], int
         importance_index++;
     }
     system("cls");
+    printf(" Rate the importance of requirement on 1-5.\n 0 for optional requirements.\n-1 to skip requirements.\n\n");
     printf("======Job Positions Available======\n");
     for(int i=0;i<job_position_count;i++){
         printf("%d. %s\n",i+1, job_position_list[i]);
     }
-    printf("\nEnter job position: ");
+    printf("\nType the job position: ");
     fgets(seeker_req[0].job_position, N, stdin);
     seeker_req[0].job_position[strlen(seeker_req[0].job_position)-1]='\0';
     printf("Enter the importance of requirement: ");
     scanf("%d", &importance[importance_index++]);
 
     system("cls");
+    printf(" Rate the importance of requirement on 1-5.\n 0 for optional requirements.\n-1 to skip requirements.\n\n");
     printf("\nEnter the salary expected: ");
     scanf("%d", &seeker_req[0].salary_expected);
     printf("Enter the importance of requirement: ");
     scanf("%d", &importance[importance_index++]);
 
     system("cls");
+    printf(" Rate the importance of requirement on 1-5.\n 0 for optional requirements.\n-1 to skip requirements.\n\n");
     printf("\nEnter shift timing \n1: 1st Shift: 6:00am to 4:00pm\n2: 2nd Shift: 2:00pm to 12:00am\n3: 3rd Shift: 10pm to 8:00am\n4: rotating shift\nEnter choice: ");
     scanf("%d", &seeker_req[0].shift_time);
     printf("Enter the importance of requirement: ");
@@ -196,11 +198,12 @@ void get_seeker_requirements(struct seeker_requirements_struct seeker_req[], int
     while(getchar()!='\n');
 
     system("cls");
+    printf(" Rate the importance of requirement on 1-5.\n 0 for optional requirements.\n-1 to skip requirements.\n\n");
     printf("======Locations======\n");
     for(int i=0;i<job_location_count;i++){
         printf("%d. %s\n",i+1, job_location_list[i]);
     }
-    printf("\nEnter preferred job location: ");
+    printf("\nType the preferred job location: ");
     fgets(seeker_req[0].job_location, N, stdin);
     seeker_req[0].job_location[strlen(seeker_req[0].job_location)-1]='\0';
     printf("Enter the importance of requirement: ");
@@ -208,11 +211,12 @@ void get_seeker_requirements(struct seeker_requirements_struct seeker_req[], int
     while(getchar()!='\n');
 
     system("cls");
+    printf(" Rate the importance of requirement on 1-5.\n 0 for optional requirements.\n-1 to skip requirements.\n\n");
     printf("======Types of companies Available======\n");
     for(int i=0;i<company_type_count;i++){
         printf("%d. %s\n",i+1, company_type_list[i]);
     }
-    printf("\nEnter type of company: ");
+    printf("\nEnter the type of company: ");
     fgets(seeker_req[0].company_type, N, stdin);
     seeker_req[0].company_type[strlen(seeker_req[0].company_type)-1]='\0';
     printf("Enter the importance of requirement: ");
@@ -220,7 +224,8 @@ void get_seeker_requirements(struct seeker_requirements_struct seeker_req[], int
     while(getchar()!='\n');
 
     system("cls");
-    printf("\nEnter type of job(wfh/offline): ");
+    printf(" Rate the importance of requirement on 1-5.\n 0 for optional requirements.\n-1 to skip requirements.\n\n");
+    printf("\nEnter the type of job (wfh/offline): ");
     fgets(seeker_req[0].job_type, N, stdin);
     seeker_req[0].job_type[strlen(seeker_req[0].job_type)-1]='\0';
     printf("Enter the importance of requirement: ");

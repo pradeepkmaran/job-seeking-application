@@ -16,3 +16,6 @@ TATA,30,Service,India,1,Rocket Engineer,130400,4,offline
 Hyundai,30,Service,India,1,Rocket Engineer,130400,4,offline
 Dell,92,Product,India,1,Network Test Engineer,100000,1,offline
 Prime,28,Product,China,2,Swift Developer,30000,3,wfh,Machine Learning Engineer,200000,4,offline
+Xiaomi,28,Product,India,3,Network Test Engineer,90000,2,offline,Cheif Programmer,100000,4,wfh,Data Analyst,40000,1,wfh
+Fasttrack,20,Product,India,2,Watch Mechanic,80000,1,offline,Watch Designer,100000,2,offline
+Reynolds,67,Product,India,2,Pen Designer,80000,2,offline,Data Analyst,90000,1,wfh

@@ -219,25 +219,25 @@ void get_company_requirements(struct company_req req[], int credits[], int impor
     char choice;
     int credit_index=0;
     printf(" Enter how important the following fields are.\n 1-5 for compulsory fields.\n 0 for optional fields.\n-1 to skip fields.\n");
-    printf("Age of the seeker: ");
+    printf("Rate the age of the seeker: ");
     scanf("%d", &credits[credit_index++]);
-    printf("Gender of the seeker: ");
+    printf("Rate the Gender of the seeker: ");
     scanf("%d", &credits[credit_index++]);
-    printf("Degrees completed: ");
+    printf("Rate the Degrees completed: ");
     scanf("%d", &credits[credit_index++]);
-    printf("Institutions of graduation: ");
+    printf("Rate the Institutions of graduation: ");
     scanf("%d", &credits[credit_index++]);
-    printf("CGPA of the degrees: ");
+    printf("Rate the CGPA of the degrees: ");
     scanf("%d", &credits[credit_index++]);
-    printf("Company of experience: ");
+    printf("Rate the Company of experience: ");
     scanf("%d", &credits[credit_index++]);
-    printf("Number of years of experience: ");
+    printf("Rate the Number of years of experience: ");
     scanf("%d", &credits[credit_index++]);
-    printf("Previous job positions: ");
+    printf("Rate the Previous job positions: ");
     scanf("%d", &credits[credit_index++]);
-    printf("Skills: ");
+    printf("Rate the Skills: ");
     scanf("%d", &credits[credit_index++]);
-    printf("Certifications: ");
+    printf("Rate the Certifications: ");
     scanf("%d", &credits[credit_index++]);
 
     credit_index = 0;
@@ -245,7 +245,7 @@ void get_company_requirements(struct company_req req[], int credits[], int impor
     
     system("cls");
     if(credits[credit_index] != -1){
-        printf("\nEnter the Range of age (21-35): ");
+        printf("\nEnter the Range of age (in this format-> 21-35): ");
         scanf("%d-%d", &req[0].age[0],&req[0].age[1]);
         while(getchar()!='\n');
     }
@@ -270,7 +270,7 @@ void get_company_requirements(struct company_req req[], int credits[], int impor
         for(int i=0;i<degrees_count;i++){
             printf("%d. %s\n",i+1, degrees_list[i]);
         }
-        printf("Enter degrees (BE|ME|MTech|..): ");
+        printf("Enter degrees (in this format-> BE|ME|MTech|..): ");
         fgets(rawstring, N, stdin);
         rawstring[strlen(rawstring)-1]='|';
         rawstring[strlen(rawstring)]='\0';
@@ -295,7 +295,7 @@ void get_company_requirements(struct company_req req[], int credits[], int impor
         for(int i=0;i<institutions_count;i++){
             printf("%d. %s\n",i+1, institutions_list[i]);
         }
-        printf("Enter institutions (SSN College of Engineering|Shiv Nadar University|..): ");
+        printf("Enter institutions (in this format-> SSN College of Engineering|Shiv Nadar University|..): ");
         fgets(rawstring, N, stdin);
         rawstring[strlen(rawstring)-1]='|';
         rawstring[strlen(rawstring)]='\0';
@@ -367,7 +367,7 @@ void get_company_requirements(struct company_req req[], int credits[], int impor
         for(int i=0;i<exp_post_count;i++){
             printf("%d. %s\n",i+1, exp_post_list[i]);
         }
-        printf("Enter the preferred previous job posts of work(Android Developer|Project Manager|..): ");
+        printf("Enter the preferred previous job posts of work(in this format-> Android Developer|Project Manager|..): ");
         fgets(rawstring, N, stdin);
         rawstring[strlen(rawstring)-1]='|';
         rawstring[strlen(rawstring)]='\0';
@@ -392,7 +392,7 @@ void get_company_requirements(struct company_req req[], int credits[], int impor
         for(int i=0;i<skills_count;i++){
             printf("%d. %s\n",i+1, skills_list[i]);
         }
-        printf("Enter the preferred skills(c++|Java|..): ");
+        printf("Enter the preferred skills(in this format-> c++|Java|..): ");
         fgets(rawstring, N, stdin);
         rawstring[strlen(rawstring)-1]='|';
         rawstring[strlen(rawstring)]='\0';
@@ -417,7 +417,7 @@ void get_company_requirements(struct company_req req[], int credits[], int impor
         for(int i=0;i<certifications_count;i++){
             printf("%d. %s\n",i+1, certifications_list[i]);
         }
-        printf("Enter the preferred certifications(Intro to Python|Intro to Java|..): ");
+        printf("Enter the preferred certifications(in this format-> Intro to Python|Intro to Java|..): ");
         fgets(rawstring, N, stdin);
         rawstring[strlen(rawstring)-1]='|';
         rawstring[strlen(rawstring)]='\0';
@@ -759,9 +759,10 @@ void sort_seeker_scores(struct seeker_details seekers[], float seekers_score[], 
 }
 
 struct seeker_details removed_seekers[N];
+struct seeker_details seekers[N];
 void company_menu(){
+
     int seekers_count=count_seeker_profile_lines();
-    struct seeker_details seekers[seekers_count];
     struct company_req req[1];
     int credits[10];
     int importance[10][N];
@@ -784,9 +785,49 @@ void company_menu(){
     sort_seeker_scores(removed_seekers, removed_seekers_score, removed_seekers_count);
 
     printf("============ YOUR REQUIREMENTS ============\n\n");
+
     
+    printf("AGE: %d-%d\n", req[0].age[0], req[0].age[1]);
+    if(req[0].degree_count > 0){
+        printf("DEGREES :\n");
+        for(int i=0;i<req[0].degree_count;i++){
+            printf("%d)%s\n", i+1,req[0].degrees[i]);
+        }
+    }
+    if(req[0].institutions_count > 0){
+        printf("INSTITUTIONS :\n");
+        for(int i=0;i<req[0].institutions_count;i++){
+            printf("%d)%s\n", i+1,req[0].institutions[i]);
+        }
+    }
+    printf("MINIMUM CGPA : %.2f\n", req[0].cgpa);
+    if(req[0].experience_companies_count > 0){
+        printf("PREVIOUS WORK COMPANIES :\n");
+        for(int i=0;i<req[0].experience_companies_count;i++){
+            printf("%d)%s\n", i+1,req[0].experience_companies[i]);
+        }
+    }
+    printf("MINIMUM YEARS OF EXPERIENCE: %d\n", req[0].experience_years);
+    if(req[0].experience_post_count > 0){
+        printf("PREVIOUS WORK POSTS:\n");
+        for(int i=0;i<req[0].experience_companies_count;i++){
+            printf("%d)%s\n", i+1,req[0].experience_companies[i]);
+        }
+    }
+    if(req[0].skills_count > 0){
+        printf("SKILLS:\n");
+        for(int i=0;i<req[0].skills_count;i++){
+            printf("%d)%s\n", i+1,req[0].skills[i]);
+        }
+    }
+    if(req[0].certifications_count > 0){
+        printf("SKILLS:\n");
+        for(int i=0;i<req[0].certifications_count;i++){
+            printf("%d)%s\n", i+1,req[0].certifications[i]);
+        }
+    }
     
-    printf("============= SELECTED SEEKERS =============\n");
+    printf("\n============= SELECTED SEEKERS =============\n");
     if(seekers_count>7){
         for(int i=0;i<7;i++){
             printf("%d) NAME: %s\n", i+1, seekers[i].name);

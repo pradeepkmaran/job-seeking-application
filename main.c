@@ -5,7 +5,7 @@
 void main(){
     choice: while(0!=0);
     system("cls");
-    printf("========WELCOME TO KORTHUVIDUVOM========\n\n");
+    printf("========WELCOME TO JOB SEEKING APPLICATION========\n\n");
     printf("\n1 - Login\n2 - Signup\n3 - Modify User Details\n\nEnter your choice: ");
     int choice;
     scanf("%d", &choice);
@@ -22,7 +22,7 @@ void main(){
         break;
     default:
         printf("Invalid choice");
-        goto end;
+        goto choice;
     }
 
     Login: while(0!=0);
@@ -43,7 +43,7 @@ void main(){
     }
     else{
         printf("WRONG PASSWORD FOR 3 TIMES.\n\n");
-        main();
+        goto end;
     }
     goto end;
 
